@@ -1,9 +1,10 @@
 package hrm.com.qa.pages;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import hrm.com.qa.base.TestBase;
 
@@ -31,16 +32,34 @@ public class Leavepage extends TestBase{
 	@FindBy(name="assignleave[txtComment]")
 	WebElement inputComments;
 	
-	public Leavepage(){
-		PageFactory.initElements(driver, this);
-		
-	}
-	
-	public void fnVerifySelected(){
-		String tabcolor=tabLeave.getCssValue("color");
-		System.out.println(tabcolor);
-		
-	}
-	
+    //Assign Leave Module   
 
+    @FindBy(id="menu_leave_assignLeave")
+    WebElement lnkAssignLeave;
+
+    public Leavepage(){
+    	PageFactory.initElements(driver, this);
+    }
+
+   
+
+    public void fnVerifySelected(){
+    	  String tabcolor=tabLeave.getCssValue("color");
+          System.out.println(tabcolor); 
+    }
+
+   
+
+    public void fnAssignLeave(String Date){
+    	lnkAssignLeave.click();
+        inputEmpName.sendKeys("Robert Craig");
+        Select se=new Select(drpLeaveType);
+        se.selectByVisibleText("Vacation US");                 
+
+        //Select date by js                
+
+        JavascriptExecutor js=(JavascriptExecutor)driver;
+        js.executeScript("argumets[0].setAttribute('value','"+Date+"');", DateFrom);
+
+    }
 }
