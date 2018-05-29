@@ -7,7 +7,7 @@
         <methods>
           <include name="Setup"/>
           <include name="TearDown"/>
-          <include name="fnLogin"/>
+          <include name="testAssigLeave"/>
         </methods>
       </class> <!-- hrm.com.qa.tests.LoginTest -->
     </classes>

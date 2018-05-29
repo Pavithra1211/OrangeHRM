@@ -29,11 +29,18 @@ public class LoginTest extends TestBase{
 	}
 	
 	
-	@Test
+	@Test(priority=0)
 	public void fnLogin(){
 		login.fnLogin();
-		dash.fnClcikAssignLeave();
+		dash.fnClickAssignLeave();
 		leave.fnVerifySelected();
+		
+	}
+	
+	@Test
+	public void testAssigLeave(){
+		login.fnLogin();
+		leave.fnAssignLeave("29/05/2018", "31/05/2018");
 		
 	}
 	

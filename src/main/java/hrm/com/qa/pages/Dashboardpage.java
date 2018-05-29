@@ -34,7 +34,7 @@ public class Dashboardpage extends TestBase {
 
 	}
 
-	public void fnClcikAssignLeave() {
+	public void fnClickAssignLeave() {
 		AssignLeave.click();
 
 	}

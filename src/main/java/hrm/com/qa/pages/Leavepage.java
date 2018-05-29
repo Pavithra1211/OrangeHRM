@@ -45,7 +45,8 @@ public class Leavepage extends TestBase {
 		System.out.println(tabcolor);
 	}
 
-	public void fnAssignLeave(String Date) {
+	public void fnAssignLeave(String FromDate,String ToDate) {
+		tabLeave.click();
 		lnkAssignLeave.click();
 		inputEmpName.sendKeys("Robert Craig");
 		Select se = new Select(drpLeaveType);
@@ -54,7 +55,18 @@ public class Leavepage extends TestBase {
 		// Select date by js
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("argumets[0].setAttribute('value','" + Date + "');", DateFrom);
+		
+		
+		js.executeScript("argumets[0].setAttribute('value','" + FromDate + "');", DateFrom);
+		js.executeScript("argumets[0].setAttribute('value','" + ToDate + "');", DateTo);
+		inputComments.sendKeys("Vacation Leave");
+		btnAssign.click();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 
 	}
 }
