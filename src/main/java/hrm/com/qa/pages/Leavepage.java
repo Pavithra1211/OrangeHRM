@@ -8,58 +8,53 @@ import org.openqa.selenium.support.ui.Select;
 
 import hrm.com.qa.base.TestBase;
 
-public class Leavepage extends TestBase{
-	
-		
-	@FindBy(id="menu_leave_viewLeaveModule")
+public class Leavepage extends TestBase {
+
+	@FindBy(id = "menu_leave_viewLeaveModule")
 	WebElement tabLeave;
-	
-	@FindBy(name="assignleave[txtEmployee][empName]")
+
+	@FindBy(name = "assignleave[txtEmployee][empName]")
 	WebElement inputEmpName;
-	
-	@FindBy(id="assignleave_txtLeaveType")
+
+	@FindBy(id = "assignleave_txtLeaveType")
 	WebElement drpLeaveType;
-	
-	@FindBy(name="assignleave[txtFromDate]")
+
+	@FindBy(name = "assignleave[txtFromDate]")
 	WebElement DateFrom;
-	
-	@FindBy(name="assignleave[txtToDate]")
+
+	@FindBy(name = "assignleave[txtToDate]")
 	WebElement DateTo;
-	
-	@FindBy(name="assignBtn")
+
+	@FindBy(name = "assignBtn")
 	WebElement btnAssign;
-	
-	@FindBy(name="assignleave[txtComment]")
+
+	@FindBy(name = "assignleave[txtComment]")
 	WebElement inputComments;
-	
-    //Assign Leave Module   
 
-    @FindBy(id="menu_leave_assignLeave")
-    WebElement lnkAssignLeave;
+	// Assign Leave Module
 
-    public Leavepage(){
-    	PageFactory.initElements(driver, this);
-    }
+	@FindBy(id = "menu_leave_assignLeave")
+	WebElement lnkAssignLeave;
 
-   
+	public Leavepage() {
+		PageFactory.initElements(driver, this);
+	}
 
-    public void fnVerifySelected(){
-    	  String tabcolor=tabLeave.getCssValue("color");
-          System.out.println(tabcolor); 
-    }
+	public void fnVerifySelected() {
+		String tabcolor = tabLeave.getCssValue("color");
+		System.out.println(tabcolor);
+	}
 
-   
+	public void fnAssignLeave(String Date) {
+		lnkAssignLeave.click();
+		inputEmpName.sendKeys("Robert Craig");
+		Select se = new Select(drpLeaveType);
+		se.selectByVisibleText("Vacation US");
 
-    public void fnAssignLeave(String Date){
-    	lnkAssignLeave.click();
-        inputEmpName.sendKeys("Robert Craig");
-        Select se=new Select(drpLeaveType);
-        se.selectByVisibleText("Vacation US");                 
+		// Select date by js
 
-        //Select date by js                
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("argumets[0].setAttribute('value','" + Date + "');", DateFrom);
 
-        JavascriptExecutor js=(JavascriptExecutor)driver;
-        js.executeScript("argumets[0].setAttribute('value','"+Date+"');", DateFrom);
-
-    }
+	}
 }
